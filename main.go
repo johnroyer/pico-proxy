@@ -16,8 +16,8 @@ func main() {
 		MaxHeaderBytes: 1 << 20,
 	}
 
-	mainHandler := func(w http.ResponseWriter, r *http.Request) {
-		io.WriteString(w, "Hello World\n")
+	mainHandler := func(writer http.ResponseWriter, request *http.Request) {
+		io.WriteString(writer, "Hello World\n")
 	}
 
 	http.HandleFunc("/", mainHandler)
