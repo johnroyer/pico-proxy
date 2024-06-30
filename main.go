@@ -44,4 +44,6 @@ func mainHandler(writer http.ResponseWriter, request *http.Request) {
 	} else {
 		fmt.Println("Failed to parse humidity")
 	}
+
+	writer.WriteHeader(200)
 }
