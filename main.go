@@ -22,6 +22,12 @@ func main() {
 		MaxHeaderBytes: 1 << 20,
 	}
 
+	http.HandleFunc("/", func(writer http.ResponseWriter, request *http.Request) {
+		method := request.Method
+		uri := request.RequestURI
+		fmt.Println(method, uri)
+	})
+
 	http.HandleFunc("/pico", mainHandler)
 
 	log.Fatal(server.ListenAndServe())
