@@ -24,14 +24,14 @@ func main() {
 		fmt.Println(request.Method, request.RequestURI)
 	})
 
-	http.HandleFunc("/pico", mainHandler)
+	http.HandleFunc("/pico", sensorDataHandler)
 
 	log.Fatal(server.ListenAndServe())
 }
 
-func mainHandler(writer http.ResponseWriter, request *http.Request) {
+func sensorDataHandler(writer http.ResponseWriter, request *http.Request) {
 	fmt.Println(request.Method, request.RequestURI)
-	
+
 	data := SensorData{0, 0}
 	if tmp, error := strconv.ParseFloat(request.URL.Query().Get("tmp"), 64); error == nil {
 		data.temperature = tmp
