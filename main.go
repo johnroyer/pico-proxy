@@ -27,10 +27,13 @@ func main() {
 }
 
 func mainHandler(writer http.ResponseWriter, request *http.Request) {
-	if temperature, error := strconv.ParseFloat(request.URL.Query().Get("tmp"), 32); error != nil {
-		return
+	data := SensorData{0, 0}
+	if tmp, error := strconv.ParseFloat(request.URL.Query().Get("tmp"), 64); error == nil {
+		data.temperature = tmp
 	}
-	if humidity, error := strconv.ParseFloat(request.URL.Query().Get("hum"), 32); error != nil {
-		return
+	data.temperature = tmp
+
+	if tmp, error := strconv.ParseFloat(request.URL.Query().Get("hum"), 64); error == nil {
+		data.humidity = tmp
 	}
 }
