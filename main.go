@@ -7,6 +7,11 @@ import (
 	"time"
 )
 
+type SensorData struct {
+	temperature float64
+	humidity    float64
+}
+
 func main() {
 	server := http.Server{
 		Addr:           "127.0.0.1:8000",
