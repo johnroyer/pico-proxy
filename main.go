@@ -1,13 +1,19 @@
 package main
 
 import (
+	"log"
 	"net/http"
-	"strconv"
+	"time"
 )
 
 func main() {
-	ip := "127.0.0.1"
-	port := 8080
+	server := http.Server{
+		Addr:           "127.0.0.1:8000",
+		Handler:        nil,
+		ReadTimeout:    10 * time.Second,
+		WriteTimeout:   10 * time.Second,
+		MaxHeaderBytes: 1 << 20,
+	}
 
-	http.ListenAndServe(ip+strconv.Itoa(port), nil)
+	log.Fatal(server.ListenAndServe())
 }
