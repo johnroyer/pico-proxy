@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"strconv"
@@ -30,10 +31,13 @@ func mainHandler(writer http.ResponseWriter, request *http.Request) {
 	data := SensorData{0, 0}
 	if tmp, error := strconv.ParseFloat(request.URL.Query().Get("tmp"), 64); error == nil {
 		data.temperature = tmp
+	} else {
+		fmt.Println("Failed to parse temperature")
 	}
-	data.temperature = tmp
 
 	if tmp, error := strconv.ParseFloat(request.URL.Query().Get("hum"), 64); error == nil {
 		data.humidity = tmp
+	} else {
+		fmt.Println("Failed to parse humidity")
 	}
 }
