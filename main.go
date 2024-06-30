@@ -15,11 +15,9 @@ type SensorData struct {
 
 func main() {
 	server := http.Server{
-		Addr:           "127.0.0.1:8000",
-		Handler:        nil,
-		ReadTimeout:    10 * time.Second,
-		WriteTimeout:   10 * time.Second,
-		MaxHeaderBytes: 1 << 20,
+		Addr:         "127.0.0.1:8000",
+		ReadTimeout:  10 * time.Second,
+		WriteTimeout: 10 * time.Second,
 	}
 
 	http.HandleFunc("/", func(writer http.ResponseWriter, request *http.Request) {
