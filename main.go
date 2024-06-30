@@ -23,9 +23,7 @@ func main() {
 	}
 
 	http.HandleFunc("/", func(writer http.ResponseWriter, request *http.Request) {
-		method := request.Method
-		uri := request.RequestURI
-		fmt.Println(method, uri)
+		fmt.Println(request.Method, request.RequestURI)
 	})
 
 	http.HandleFunc("/pico", mainHandler)
