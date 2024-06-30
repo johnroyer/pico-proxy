@@ -1,6 +1,7 @@
 package main
 
 import (
+	"io"
 	"log"
 	"net/http"
 	"time"
@@ -15,5 +16,10 @@ func main() {
 		MaxHeaderBytes: 1 << 20,
 	}
 
+	mainHandler := func(w http.ResponseWriter, r *http.Request) {
+		io.WriteString(w, "Hello World\n")
+	}
+
+	http.HandleFunc("/", mainHandler)
 	log.Fatal(server.ListenAndServe())
 }
