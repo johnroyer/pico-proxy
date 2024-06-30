@@ -17,9 +17,10 @@ func main() {
 	}
 
 	mainHandler := func(writer http.ResponseWriter, request *http.Request) {
+
 		io.WriteString(writer, "Hello World\n")
 	}
 
-	http.HandleFunc("/", mainHandler)
+	http.HandleFunc("/pico", mainHandler)
 	log.Fatal(server.ListenAndServe())
 }
