@@ -81,10 +81,10 @@ func sensorDataHandler(writer http.ResponseWriter, request *http.Request) {
 	writer.WriteHeader(200)
 }
 
-func getListenData(fileName string) {
+func getListenData(iniFile *ini.File) {
 	// read config from file
 }
 
-func getForwardDate(fileName string) {
+func getForwardDate(iniFile *ini.File) {
 	// read config from file
 }
