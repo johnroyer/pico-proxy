@@ -25,11 +25,6 @@ type forward struct {
 }
 
 func main() {
-	server := http.Server{
-		Addr:         "127.0.0.1:8000",
-		ReadTimeout:  10 * time.Second,
-		WriteTimeout: 10 * time.Second,
-	}
 	var listenOn listen
 
 	configData, err := ini.Load("config.ini")
@@ -50,6 +45,12 @@ func main() {
 		}
 
 		listenOn.port = int32(configPort)
+	}
+
+	server := http.Server{
+		Addr:         listenOn.address + ":" + strconv.Itoa(int(listenOn.port)),
+		ReadTimeout:  10 * time.Second,
+		WriteTimeout: 10 * time.Second,
 	}
 
 	http.HandleFunc("/", func(writer http.ResponseWriter, request *http.Request) {
