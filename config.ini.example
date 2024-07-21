@@ -1,0 +1,7 @@
+[listen]
+address=127.0.0.1
+port=8080
+
+[forward]
+url=https://test.com/api/test
+method=post
