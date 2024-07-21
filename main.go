@@ -5,6 +5,7 @@ import (
 	"gopkg.in/ini.v1"
 	"log"
 	"net/http"
+	"os"
 	"strconv"
 	"time"
 )
@@ -25,7 +26,14 @@ type forward struct {
 }
 
 func main() {
+	configFileName := "config.ini"
 	var listenOn listen
+
+	if _, err := os.Stat(configFileName); os.IsNotExist(err) {
+		// config file not found
+		fmt.Println("file 'config.ini' not found")
+		os.Exit(1)
+	}
 
 	configData, err := ini.Load("config.ini")
 	if err != nil {
