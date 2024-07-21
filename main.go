@@ -13,6 +13,16 @@ type SensorData struct {
 	humidity    float64
 }
 
+type listen struct {
+	address string
+	port    int32
+}
+
+type forward struct {
+	url        string
+	httpMethod string
+}
+
 func main() {
 	server := http.Server{
 		Addr:         "127.0.0.1:8000",
