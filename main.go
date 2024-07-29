@@ -17,7 +17,7 @@ type SensorData struct {
 
 type listen struct {
 	address string
-	port    int32
+	port    int
 }
 
 type forward struct {
@@ -92,7 +92,7 @@ func sensorDataHandler(writer http.ResponseWriter, request *http.Request) {
 func getListenData(iniFile *ini.File) listen {
 	var listenConfig listen
 	listenConfig.address = iniFile.Section("listen").Key("address").String()
-	listenConfig.port = iniFile.Section("listen").Key("port")
+	listenConfig.port, _ = iniFile.Section("listen").Key("port").Int()
 
 	return listenConfig
 }
