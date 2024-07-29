@@ -41,7 +41,7 @@ func main() {
 	forwardConfig := getForwardDate(iniConfig)
 
 	server := http.Server{
-		Addr:         listenOn.address + ":" + strconv.Itoa(int(listenOn.port)),
+		Addr:         listenConfig.address + ":" + strconv.Itoa(int(listenConfig.port)),
 		ReadTimeout:  10 * time.Second,
 		WriteTimeout: 10 * time.Second,
 	}
