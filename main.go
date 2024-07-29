@@ -90,7 +90,11 @@ func sensorDataHandler(writer http.ResponseWriter, request *http.Request) {
 }
 
 func getListenData(iniFile *ini.File) listen {
-	// read config from file
+	var listenConfig listen
+	listenConfig.address = iniFile.Section("listen").Key("address").String()
+	listenConfig.port = iniFile.Section("listen").Key("port")
+
+	return listenConfig
 }
 
 func getForwardDate(iniFile *ini.File) forward {
