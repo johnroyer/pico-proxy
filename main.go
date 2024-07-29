@@ -87,4 +87,6 @@ func getForwardDate(iniFile *ini.File) forward {
 
 	forwardConfig.url = iniFile.Section("forward").Key("url").MustString("https://my.domain/api/test")
 	forwardConfig.httpMethod = iniFile.Section("forward").Key("method").MustString("POST")
+
+	return forwardConfig
 }
