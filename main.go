@@ -35,6 +35,14 @@ func main() {
 		os.Exit(1)
 	}
 
+	iniConfig, err := ini.Load("config.ini")
+	if err != nil {
+		fmt.Println("config.ini not foud")
+		os.Exit(1)
+	}
+	listenConfig := getListenData(iniConfig)
+	forwardConfig := getForwardDate(iniConfig)
+
 	configData, err := ini.Load("config.ini")
 	if err != nil {
 		// failed to load config file, use default value
