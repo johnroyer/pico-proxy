@@ -40,26 +40,6 @@ func main() {
 	listenConfig := getListenData(iniConfig)
 	forwardConfig := getForwardDate(iniConfig)
 
-	configData, err := ini.Load("config.ini")
-	if err != nil {
-		// failed to load config file, use default value
-		listenOn.address = "127.0.01:8000"
-		listenOn.port = 8080
-	} else {
-		listenSection := configData.Section("listen")
-		listenOn.address = listenSection.Key("address").String()
-
-		configPort, convertErr := listenSection.Key("port").Int()
-		if convertErr != nil {
-			fmt.Println("port in config file is not valid")
-		}
-		if 1 > configPort || 65535 < configPort {
-			fmt.Println("port in config file is not valid")
-		}
-
-		listenOn.port = int32(configPort)
-	}
-
 	server := http.Server{
 		Addr:         listenOn.address + ":" + strconv.Itoa(int(listenOn.port)),
 		ReadTimeout:  10 * time.Second,
