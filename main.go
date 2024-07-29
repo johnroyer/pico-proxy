@@ -76,14 +76,15 @@ func sensorDataHandler(writer http.ResponseWriter, request *http.Request) {
 
 func getListenData(iniFile *ini.File) listen {
 	var listenConfig listen
-	listenConfig.address = iniFile.Section("listen").Key("address").String()
-	listenConfig.port, _ = iniFile.Section("listen").Key("port").Int()
+	listenConfig.address = iniFile.Section("listen").Key("address").MustString("127.0.0.1")
+	listenConfig.port = iniFile.Section("listen").Key("port").InInt(8080)
 
 	return listenConfig
 }
 
 func getForwardDate(iniFile *ini.File) forward {
 	var forwardConfig forward
-	forwardConfig.url = iniFile.Section("forward").Key("url").String()
-	forwardConfig.httpMethod = iniFile.Section("forward").Key("method").String()
+
+	forwardConfig.url = iniFile.Section("forward").Key("url").MustString("https://my.domain/api/test")
+	forwardConfig.httpMethod = iniFile.Section("forward").Key("method").MustString("POST")
 }
