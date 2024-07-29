@@ -26,10 +26,7 @@ type forward struct {
 }
 
 func main() {
-	configFileName := "config.ini"
-	var listenOn listen
-
-	if _, err := os.Stat(configFileName); os.IsNotExist(err) {
+	if _, err := os.Stat("config.ini"); os.IsNotExist(err) {
 		// config file not found
 		fmt.Println("file 'config.ini' not found")
 		os.Exit(1)
