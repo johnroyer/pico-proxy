@@ -98,5 +98,7 @@ func getListenData(iniFile *ini.File) listen {
 }
 
 func getForwardDate(iniFile *ini.File) forward {
-	// read config from file
+	var forwardConfig forward
+	forwardConfig.url = iniFile.Section("forward").Key("url").String()
+	forwardConfig.httpMethod = iniFile.Section("forward").Key("method").String()
 }
