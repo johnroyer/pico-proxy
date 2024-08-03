@@ -38,7 +38,6 @@ func main() {
 		os.Exit(1)
 	}
 	listenConfig := getListenData(iniConfig)
-	forwardConfig := getForwardDate(iniConfig)
 
 	server := http.Server{
 		Addr:         listenConfig.address + ":" + strconv.Itoa(int(listenConfig.port)),
@@ -80,13 +79,4 @@ func getListenData(iniFile *ini.File) listen {
 	listenConfig.port = iniFile.Section("listen").Key("port").InInt(8080)
 
 	return listenConfig
-}
-
-func getForwardDate(iniFile *ini.File) forward {
-	var forwardConfig forward
-
-	forwardConfig.url = iniFile.Section("forward").Key("url").MustString("https://my.domain/api/test")
-	forwardConfig.httpMethod = iniFile.Section("forward").Key("method").MustString("POST")
-
-	return forwardConfig
 }
